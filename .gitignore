@@ -186,4 +186,4 @@ _site
 
 /Examples/PowerDeliveryASPNETMVC4/packages
 
-/Test/TestPipelines/**/PowerDelivery
+/Tests/TestPipelines/**/PowerDelivery
