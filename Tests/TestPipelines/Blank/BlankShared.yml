@@ -1,0 +1,5 @@
+SourceControl:
+  Provider: TFS
+  Parameters:
+    TeamProject: Blank
+    CollectionUri: http://my-tfs-server:8080/tfs

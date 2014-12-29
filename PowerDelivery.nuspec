@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>PowerDelivery</id>
+    <version>3.0.0</version>
+    <title>PowerDelivery</title>
+    <authors>Jayme Edwards</authors>
+    <tags>admin</tags>
+    <owners />
+    <projectUrl>http://eavonius.github.com/powerdelivery/</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A deployment framework helping you to continuously deliver software to your customers using Microsoft Team Foundation Server and Windows PowerShell.</description>
+    <summary>PowerShell/TFS continuous delivery framework.</summary>
+    <language>es-US</language>
+    <dependencies />
+  </metadata>
+  <files>
+    <file src="PowerShellModules\PowerDelivery\PowerDelivery.psm1" target="tools\PowerShellModules\PowerDelivery\PowerDelivery.psm1" />
+    <file src="PowerShellModules\PowerDelivery\PowerDelivery.psd1" target="tools\PowerShellModules\PowerDelivery\PowerDelivery.psd1" />
+    <file src="PowerShellModules\PowerDelivery\Add-CommandCredSSP.ps1" target="tools\PowerShellModules\PowerDelivery\Add-CommandCredSSP.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Add-CredSSPTrustedHost.ps1" target="tools\PowerShellModules\PowerDelivery\Add-CredSSPTrustedHost.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Add-Pipeline.ps1" target="tools\PowerShellModules\PowerDelivery\Add-Pipeline.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Add-ExamplePipeline.ps1" target="tools\PowerShellModules\PowerDelivery\Add-ExamplePipeline.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Add-RemoteCredSSPTrustedHost.ps1" target="tools\PowerShellModules\PowerDelivery\Add-RemoteCredSSPTrustedHost.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Add-WindowsUserToGroup.ps1" target="tools\PowerShellModules\PowerDelivery\Add-WindowsUserToGroup.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Backup-MasterDataServices.ps1" target="tools\PowerShellModules\PowerDelivery\Backup-MasterDataServices.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Copy-Robust.ps1" target="tools\PowerShellModules\PowerDelivery\Copy-Robust.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Push-BuildAssets.ps1" target="tools\PowerShellModules\PowerDelivery\Push-BuildAssets.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Disable-SqlJobs.ps1" target="tools\PowerShellModules\PowerDelivery\Disable-SqlJobs.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Enable-SqlJobs.ps1" target="tools\PowerShellModules\PowerDelivery\Enable-SqlJobs.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Enable-WebDeploy.ps1" target="tools\PowerShellModules\PowerDelivery\Enable-WebDeploy.ps1" />
+    <file src="PowerShellModules\PowerDelivery\End-BuildSummarySection.ps1" target="tools\PowerShellModules\PowerDelivery\End-BuildSummarySection.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Exec.ps1" target="tools\PowerShellModules\PowerDelivery\Exec.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Export-BuildCredentials.ps1" target="tools\PowerShellModules\PowerDelivery\Export-BuildCredentials.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-ArrayFromStringOrHash.ps1" target="tools\PowerShellModules\PowerDelivery\Get-ArrayFromStringOrHash.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildAppVersion.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildAppVersion.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildAssemblyVersion.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildAssemblyVersion.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildAssets.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildAssets.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildChangeSet.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildChangeSet.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildCredentials.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildCredentials.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildDropLocation.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildDropLocation.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildEnvironment.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildEnvironment.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildConfig.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildConfig.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildName.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildName.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildNumber.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildNumber.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildOnServer.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildOnServer.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildRequestedBy.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildRequestedBy.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildSetting.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildSetting.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildTeamProject.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildTeamProject.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildUri.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildUri.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildWorkspaceName.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildWorkspaceName.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-BuildCollectionUri.ps1" target="tools\PowerShellModules\PowerDelivery\Get-BuildCollectionUri.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-ComputerLocalDeployPath.ps1" target="tools\PowerShellModules\PowerDelivery\Get-ComputerLocalDeployPath.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Get-ComputerRemoteDeployPath.ps1" target="tools\PowerShellModules\PowerDelivery\Get-ComputerRemoteDeployPath.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-BuildConfigSection.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-BuildConfigSection.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-BuildConfigSections.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-BuildConfigSections.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Import-Snapin.ps1" target="tools\PowerShellModules\PowerDelivery\Import-Snapin.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Install-NServiceBusService.ps1" target="tools\PowerShellModules\PowerDelivery\Install-NServiceBusService.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-MSBuild.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-MSBuild.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-MSTest.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-MSTest.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-Powerdelivery.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-Powerdelivery.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-Roundhouse.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-Roundhouse.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Invoke-SSISPackage.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-SSISPackage.ps1" />
+    <file src="PowerShellModules\PowerDelivery\New-RemoteShare.ps1" target="tools\PowerShellModules\PowerDelivery\New-RemoteShare.ps1" />
+    <file src="PowerShellModules\PowerDelivery\New-RemoteTempPath.ps1" target="tools\PowerShellModules\PowerDelivery\New-RemoteTempPath.ps1" />
+    <file src="PowerShellModules\PowerDelivery\New-WindowsUserAccount.ps1" target="tools\PowerShellModules\PowerDelivery\New-WindowsUserAccount.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Process-SSAS.ps1" target="tools\PowerShellModules\PowerDelivery\Process-SSAS.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Publish-BuildAssets.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-BuildAssets.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Publish-MasterDataServices.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-MasterDataServices.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Publish-SSAS.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-SSAS.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Publish-SSISProject.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-SSISProject.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Publish-WebDeploy.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-WebDeploy.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Remove-Pipeline.ps1" target="tools\PowerShellModules\PowerDelivery\Remove-Pipeline.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Register-SourceControlProvider.ps1" target="tools\PowerShellModules\PowerDelivery\Register-SourceControlProvider.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Set-AppPoolIdentity.ps1" target="tools\PowerShellModules\PowerDelivery\Set-AppPoolIdentity.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Set-EnvironmentVariable.ps1" target="tools\PowerShellModules\PowerDelivery\Set-EnvironmentVariable.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Start-BuildSummarySection.ps1" target="tools\PowerShellModules\PowerDelivery\Start-BuildSummarySection.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Start-SqlJobs.ps1" target="tools\PowerShellModules\PowerDelivery\Start-SqlJobs.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Uninstall-NServiceBusService.ps1" target="tools\PowerShellModules\PowerDelivery\Uninstall-NServiceBusService.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Update-AssemblyInfoFiles.ps1" target="tools\PowerShellModules\PowerDelivery\Update-AssemblyInfoFiles.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Update-XmlFile.ps1" target="tools\PowerShellModules\PowerDelivery\Update-XmlFile.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Wait-ForLeapFrogBI.ps1" target="tools\PowerShellModules\PowerDelivery\Wait-ForLeapFrogBI.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Write-BuildSummaryMessage.ps1" target="tools\PowerShellModules\PowerDelivery\Write-BuildSummaryMessage.ps1" />
+    <file src="PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryChangeSetTemplate.11.xaml" target="tools\PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryChangeSetTemplate.11.xaml" />
+    <file src="PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryChangeSetTemplate.xaml" target="tools\PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryChangeSetTemplate.xaml" />
+    <file src="PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryTemplate.11.xaml" target="tools\PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryTemplate.11.xaml" />
+    <file src="PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryTemplate.xaml" target="tools\PowerShellModules\PowerDelivery\BuildProcessTemplates\PowerDeliveryTemplate.xaml" />
+    <file src="PowerShellModules\PowerDelivery\SourceControlProviders\GitSourceControlProvider.ps1" target="tools\PowerShellModules\PowerDelivery\SourceControlProviders\GitSourceControlProvider.ps1" />
+    <file src="PowerShellModules\PowerDelivery\SourceControlProviders\TFSSourceControlProvider.ps1" target="tools\PowerShellModules\PowerDelivery\SourceControlProviders\TFSSourceControlProvider.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\Build.ps1" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\Build.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\BuildCapacityTest.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\BuildCapacityTest.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\BuildCommit.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\BuildCommit.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\BuildLocal.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\BuildLocal.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\BuildProduction.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\BuildProduction.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\BuildTest.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\BuildTest.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Blank\BuildShared.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Blank\BuildShared.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\Build.ps1" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\Build.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\BuildCapacityTest.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\BuildCapacityTest.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\BuildCommit.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\BuildCommit.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\BuildLocal.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\BuildLocal.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\BuildProduction.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\BuildProduction.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\BuildTest.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\BuildTest.yml" />
+    <file src="PowerShellModules\PowerDelivery\Templates\Website with Database\BuildShared.yml" target="tools\PowerShellModules\PowerDelivery\Templates\Website with Database\BuildShared.yml" />
+    <file src="PowerShellModules\PowerYaml\PowerYaml.psm1" target="tools\PowerShellModules\PowerYaml\PowerYaml.psm1" />
+    <file src="PowerShellModules\PowerYaml\LICENSE" target="tools\PowerShellModules\PowerYaml\LICENSE" />
+    <file src="PowerShellModules\PowerYaml\Functions\Casting.ps1" target="tools\PowerShellModules\PowerYaml\Functions\Casting.ps1" />
+    <file src="PowerShellModules\PowerYaml\Functions\Shadow-Copy.ps1" target="tools\PowerShellModules\PowerYaml\Functions\Shadow-Copy.ps1" />
+    <file src="PowerShellModules\PowerYaml\Functions\Validator-Functions.ps1" target="tools\PowerShellModules\PowerYaml\Functions\Validator-Functions.ps1" />
+    <file src="PowerShellModules\PowerYaml\Functions\YamlDotNet-Integration.ps1" target="tools\PowerShellModules\PowerYaml\Functions\YamlDotNet-Integration.ps1" />
+    <file src="PowerShellModules\PowerYaml\Libs\YamlDotNet.Configuration.dll" target="tools\PowerShellModules\PowerYaml\Libs\YamlDotNet.Configuration.dll" />
+    <file src="PowerShellModules\PowerYaml\Libs\YamlDotNet.Converters.dll" target="tools\PowerShellModules\PowerYaml\Libs\YamlDotNet.Converters.dll" />
+    <file src="PowerShellModules\PowerYaml\Libs\YamlDotNet.Core.dll" target="tools\PowerShellModules\PowerYaml\Libs\YamlDotNet.Core.dll" />
+    <file src="PowerShellModules\PowerYaml\Libs\YamlDotNet.RepresentationModel.dll" target="tools\PowerShellModules\PowerYaml\Libs\YamlDotNet.RepresentationModel.dll" />
+    <file src="chocolateyInstall.ps1" target="tools\chocolateyInstall.ps1" />
+    <file src="init.ps1" target="tools\init.ps1" />
+    <file src="enable-buildDeployment.ps1" target="tools\enable-buildDeployment.ps1" />
+  </files>
+</package>
