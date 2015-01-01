@@ -1,4 +1,4 @@
-function End-BuildSummarySection {
+function Close-BuildSummarySection {
   [CmdletBinding()]
   param()
   if ($powerdelivery.isBuildSummarySectionStarted) {
@@ -7,4 +7,4 @@ function End-BuildSummarySection {
   }
 }
 
-Export-ModuleMember -Function End-BuildSummarySection
+Export-ModuleMember -Function Close-BuildSummarySection

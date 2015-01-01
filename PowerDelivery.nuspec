@@ -29,7 +29,7 @@
     <file src="PowerShellModules\PowerDelivery\Disable-SqlJobs.ps1" target="tools\PowerShellModules\PowerDelivery\Disable-SqlJobs.ps1" />
     <file src="PowerShellModules\PowerDelivery\Enable-SqlJobs.ps1" target="tools\PowerShellModules\PowerDelivery\Enable-SqlJobs.ps1" />
     <file src="PowerShellModules\PowerDelivery\Enable-WebDeploy.ps1" target="tools\PowerShellModules\PowerDelivery\Enable-WebDeploy.ps1" />
-    <file src="PowerShellModules\PowerDelivery\End-BuildSummarySection.ps1" target="tools\PowerShellModules\PowerDelivery\End-BuildSummarySection.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Close-BuildSummarySection.ps1" target="tools\PowerShellModules\PowerDelivery\Close-BuildSummarySection.ps1" />
     <file src="PowerShellModules\PowerDelivery\Exec.ps1" target="tools\PowerShellModules\PowerDelivery\Exec.ps1" />
     <file src="PowerShellModules\PowerDelivery\Export-BuildCredentials.ps1" target="tools\PowerShellModules\PowerDelivery\Export-BuildCredentials.ps1" />
     <file src="PowerShellModules\PowerDelivery\Get-ArrayFromStringOrHash.ps1" target="tools\PowerShellModules\PowerDelivery\Get-ArrayFromStringOrHash.ps1" />
@@ -53,7 +53,6 @@
     <file src="PowerShellModules\PowerDelivery\Get-ComputerLocalDeployPath.ps1" target="tools\PowerShellModules\PowerDelivery\Get-ComputerLocalDeployPath.ps1" />
     <file src="PowerShellModules\PowerDelivery\Get-ComputerRemoteDeployPath.ps1" target="tools\PowerShellModules\PowerDelivery\Get-ComputerRemoteDeployPath.ps1" />
     <file src="PowerShellModules\PowerDelivery\Invoke-BuildConfigSection.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-BuildConfigSection.ps1" />
-    <file src="PowerShellModules\PowerDelivery\Invoke-BuildConfigSections.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-BuildConfigSections.ps1" />
     <file src="PowerShellModules\PowerDelivery\Import-Snapin.ps1" target="tools\PowerShellModules\PowerDelivery\Import-Snapin.ps1" />
     <file src="PowerShellModules\PowerDelivery\Install-NServiceBusService.ps1" target="tools\PowerShellModules\PowerDelivery\Install-NServiceBusService.ps1" />
     <file src="PowerShellModules\PowerDelivery\Invoke-MSBuild.ps1" target="tools\PowerShellModules\PowerDelivery\Invoke-MSBuild.ps1" />
@@ -64,7 +63,6 @@
     <file src="PowerShellModules\PowerDelivery\New-RemoteShare.ps1" target="tools\PowerShellModules\PowerDelivery\New-RemoteShare.ps1" />
     <file src="PowerShellModules\PowerDelivery\New-RemoteTempPath.ps1" target="tools\PowerShellModules\PowerDelivery\New-RemoteTempPath.ps1" />
     <file src="PowerShellModules\PowerDelivery\New-WindowsUserAccount.ps1" target="tools\PowerShellModules\PowerDelivery\New-WindowsUserAccount.ps1" />
-    <file src="PowerShellModules\PowerDelivery\Process-SSAS.ps1" target="tools\PowerShellModules\PowerDelivery\Process-SSAS.ps1" />
     <file src="PowerShellModules\PowerDelivery\Publish-BuildAssets.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-BuildAssets.ps1" />
     <file src="PowerShellModules\PowerDelivery\Publish-MasterDataServices.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-MasterDataServices.ps1" />
     <file src="PowerShellModules\PowerDelivery\Publish-SSAS.ps1" target="tools\PowerShellModules\PowerDelivery\Publish-SSAS.ps1" />
@@ -74,7 +72,8 @@
     <file src="PowerShellModules\PowerDelivery\Register-SourceControlProvider.ps1" target="tools\PowerShellModules\PowerDelivery\Register-SourceControlProvider.ps1" />
     <file src="PowerShellModules\PowerDelivery\Set-AppPoolIdentity.ps1" target="tools\PowerShellModules\PowerDelivery\Set-AppPoolIdentity.ps1" />
     <file src="PowerShellModules\PowerDelivery\Set-EnvironmentVariable.ps1" target="tools\PowerShellModules\PowerDelivery\Set-EnvironmentVariable.ps1" />
-    <file src="PowerShellModules\PowerDelivery\Start-BuildSummarySection.ps1" target="tools\PowerShellModules\PowerDelivery\Start-BuildSummarySection.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Open-BuildSummarySection.ps1" target="tools\PowerShellModules\PowerDelivery\Open-BuildSummarySection.ps1" />
+    <file src="PowerShellModules\PowerDelivery\Start-ProcessSSAS.ps1" target="tools\PowerShellModules\PowerDelivery\Start-ProcessSSAS.ps1" />
     <file src="PowerShellModules\PowerDelivery\Start-SqlJobs.ps1" target="tools\PowerShellModules\PowerDelivery\Start-SqlJobs.ps1" />
     <file src="PowerShellModules\PowerDelivery\Uninstall-NServiceBusService.ps1" target="tools\PowerShellModules\PowerDelivery\Uninstall-NServiceBusService.ps1" />
     <file src="PowerShellModules\PowerDelivery\Update-AssemblyInfoFiles.ps1" target="tools\PowerShellModules\PowerDelivery\Update-AssemblyInfoFiles.ps1" />

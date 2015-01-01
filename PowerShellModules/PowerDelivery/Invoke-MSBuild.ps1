@@ -39,26 +39,20 @@ Optional. The platform configuration (x86, x64 etc.) of this MSBuild complation.
 
 .Parameter ignoreProjectExtensions
 Optional. A semicolon-delimited list of project extensions (".smproj;.csproj" etc.) of projects in the solution to not compile.
-
-.Parameter dotNetVersion
-Optional. The .NET version to use for compilation. Defaults to the version specified in the project file(s) being built.
 #>
 function Invoke-MSBuild {
-    [CmdletBinding()]
-    param(
-        [Parameter(Position=0,Mandatory=1)][string] $projectFile, 
-        [Parameter(Position=1,Mandatory=0)] $properties = @{}, 
-        [Parameter(Position=2,Mandatory=0)][string] $target, 
-        [Parameter(Position=3,Mandatory=0)][string] $toolsVersion, 
-        [Parameter(Position=4,Mandatory=0)][string] $verbosity = "m", 
-        [Parameter(Position=5,Mandatory=0)][string] $buildConfiguration, 
-        [Parameter(Position=6,Mandatory=0)][string] $flavor = "AnyCPU", 
-        [Parameter(Position=7,Mandatory=0)][string] $ignoreProjectExtensions, 
-        [Parameter(Position=8,Mandatory=0)][string] $dotNetVersion = "4.0"
-    )
+  [CmdletBinding()]
+  param(
+    [Parameter(Position=0,Mandatory=1)][string] $projectFile, 
+    [Parameter(Position=1,Mandatory=0)] $properties = @{}, 
+    [Parameter(Position=2,Mandatory=0)][string] $target, 
+    [Parameter(Position=3,Mandatory=0)][string] $toolsVersion = '4.0', 
+    [Parameter(Position=4,Mandatory=0)][string] $verbosity = "m", 
+    [Parameter(Position=5,Mandatory=0)][string] $buildConfiguration, 
+    [Parameter(Position=6,Mandatory=0)][string] $flavor = "AnyCPU", 
+    [Parameter(Position=7,Mandatory=0)][string] $ignoreProjectExtensions
+  )
 	
-    $logPrefix = "[Invoke-MSBuild]"
-
 	if ([String]::IsNullOrWhiteSpace($buildConfiguration)) {
 		if ((Get-BuildEnvironment) -eq 'Local') {
 			$buildConfiguration = 'Debug'
@@ -76,34 +70,33 @@ function Invoke-MSBuild {
 	$logFolder = Join-Path $dropLocation "Logs"
 	mkdir -Force $logFolder | Out-Null
 
-    $regKey = "HKLM:\Software\Microsoft\MSBuild\ToolsVersions\$dotNetVersion"
-    $regProperty = "MSBuildToolsPath"
+  $regKey = "HKLM:\Software\Microsoft\MSBuild\ToolsVersions\$toolsVersion"
+  $regProperty = "MSBuildToolsPath"
 
-    $msbuildExe = Join-Path -path (Get-ItemProperty $regKey).$regProperty -childpath "msbuild.exe"
+  $msbuildExe = Join-Path -path (Get-ItemProperty $regKey).$regProperty -childpath "msbuild.exe"
 
-    $msBuildCommand = "& ""$msbuildExe"""
-    $msBuildCommand += " /nologo /m"
+  $msBuildCommand = "& ""$msbuildExe"""
+  $msBuildCommand += " /nologo /m"
 
-    if ($properties.length -gt 0) {
-        
-        $properties.Keys | % {
-            $msBuildCommand += " ""/p:$($_)=$($properties.Item($_))"""
-        }
+  if ($properties.length -gt 0) {     
+    $properties.Keys | % {
+      $msBuildCommand += " ""/p:$($_)=$($properties.Item($_))"""
     }
+  }
 	
-    if ([string]::IsNullOrWhiteSpace($toolsVersion) -eq $false) {
-        $msBuildCommand += " ""/tv:$toolsVersion"""
-    }
+  if ([string]::IsNullOrWhiteSpace($toolsVersion) -eq $false) {
+    $msBuildCommand += " ""/tv:$toolsVersion"""
+  }
 
-    $msBuildCommand += " `"/consoleloggerparameters:Verbosity=q`""
+  $msBuildCommand += " `"/consoleloggerparameters:Verbosity=q`""
 
-    if ([string]::IsNullOrWhiteSpace($verbosity) -eq $false) {
-        $msBuildCommand += " /v:$verbosity"
-    }
+  if ([string]::IsNullOrWhiteSpace($verbosity) -eq $false) {
+    $msBuildCommand += " /v:$verbosity"
+  }
 
-    if ([string]::IsNullOrWhiteSpace($ignoreProjectExtensions) -eq $false) {
-        $msBuildCommand += " ""/ignore:$ignoreProjectExtensions"""
-    }
+  if ([string]::IsNullOrWhiteSpace($ignoreProjectExtensions) -eq $false) {
+      $msBuildCommand += " ""/ignore:$ignoreProjectExtensions"""
+  }
 
 	if (![string]::IsNullOrWhiteSpace($target)) {
 		$msBuildCommand += " ""/T:$target"""
@@ -113,45 +106,44 @@ function Invoke-MSBuild {
 	$logFile = "$($projectFileBase).log"
 	
 	$msBuildCommand += " ""/l:FileLogger,Microsoft.Build.Engine;logfile=$logFile"""
-    $msBuildCommand += " ""$projectFile"""
+  $msBuildCommand += " ""$projectFile"""
     
 	$currentDirectory = Get-Location
 
-    if (Get-BuildOnServer) {
+  if (Get-BuildOnServer) {
 			
 		$fullProjectFile = Join-Path $currentDirectory $projectFile
 		$shortPath = [System.IO.Path]::GetDirectoryName($fullProjectFile)
 		
-	    Update-AssemblyInfoFiles -path $shortPath
+    Update-AssemblyInfoFiles -path $shortPath
 	}
 
-    try {
-        Write-Host
-        "$logPrefix $msBuildCommand"
-        Exec -errorMessage "Invocation of MSBuild project $projectFile failed." {            
-            Invoke-Expression $msBuildCommand | Out-Host
-        }
+  try {
+    Write-BuildSummaryMessage $msBuildCommand
+    Exec -errorMessage "Invocation of MSBuild project $projectFile failed." {            
+      Invoke-Expression $msBuildCommand | Out-Host
     }
-    finally {
-        if (Get-BuildOnServer) {
+  }
+  finally {
+    if (Get-BuildOnServer) {
      
-            $buildDetail = Get-CurrentBuildDetail
+      $buildDetail = Get-CurrentBuildDetail
 
-            $projectFileName = [System.IO.Path]::GetFileName($projectFile)
-            $tfsPath = "`$/$($projectFile.Replace('\', '/'))"
+      $projectFileName = [System.IO.Path]::GetFileName($projectFile)
+      $tfsPath = "`$/$($projectFile.Replace('\', '/'))"
 
-            $publishTarget = "Default"
-            if (![string]::IsNullOrWhiteSpace($target)) {
-		        $publishTarget = $target
-	        }
+      $publishTarget = "Default"
+      if (![string]::IsNullOrWhiteSpace($target)) {
+	      $publishTarget = $target
+	    }
 			
 			$logFilename = [IO.Path]::GetFileName($logFile)
 			$logDestFile = Join-Path $logFolder $logFilename
 			
 			copy $logFile $logDestFile
 
-            $buildProjectNode = [Microsoft.TeamFoundation.Build.Client.InformationNodeConverters]::AddBuildProjectNode(`
-                $buildDetail.Information, [DateTime]::Now, $buildConfiguration, $projectFile, $flavor, $tfsPath, [DateTime]::Now, $publishTarget)
+      $buildProjectNode = [Microsoft.TeamFoundation.Build.Client.InformationNodeConverters]::AddBuildProjectNode(`
+      $buildDetail.Information, [DateTime]::Now, $buildConfiguration, $projectFile, $flavor, $tfsPath, [DateTime]::Now, $publishTarget)
 				
 			$errorCount = 0
 			$warningCount = 0
@@ -218,15 +210,15 @@ function Invoke-MSBuild {
 			$logDestUri = New-Object -TypeName System.Uri -ArgumentList $logDestFile
 
 			$logFileLink = [Microsoft.TeamFoundation.Build.Client.InformationNodeConverters]::AddExternalLink(`
-				$buildProjectNode.Node.Children, "Log File", $logDestUri)
+	  	$buildProjectNode.Node.Children, "Log File", $logDestUri)
 
-            $buildProjectNode.Save()
+      $buildProjectNode.Save()
 
-            $buildDetail.Information.Save()
+      $buildDetail.Information.Save()
 
-			Write-BuildSummaryMessage "$logPrefix" "$projectFile ($flavor - $buildConfiguration)"
-        }
+			Write-BuildSummaryMessage "$projectFile ($flavor - $buildConfiguration)"
     }
+  }
 }
 
 Export-ModuleMember -Function Invoke-MSBuild

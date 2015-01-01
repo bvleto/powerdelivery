@@ -36,7 +36,7 @@ XmlReplacements:
 
 # MyScript.ps1
 $XmlReplacements = Get-BuildSetting XmlReplacements
-Invoke-BuildConfigSections $XmlReplacements Update-XmlFile
+pow:do Update-XmlFile $XmlReplacements
 #>
 function Update-XmlFile {
     [CmdletBinding()]

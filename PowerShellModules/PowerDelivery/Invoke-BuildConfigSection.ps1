@@ -15,34 +15,47 @@ string - The name of the cmdlet to invoke.
 In the example below, there is a YAML configuration section named "Database" with 
 settings that match the arguments of the "Invoke-Roundhouse" cmdlet.
 
-$databaseSection = Get-BuildSetting Database
-Invoke-BuildConfigSection $databaseSection Invoke-Roundhouse 
+$database = pow:getSetting Database
+pow:do Invoke-Roundhouse $database
 #>
 function Invoke-BuildConfigSection {
 	[CmdletBinding()]
 	param(
-		[Parameter(Position=0,Mandatory=1)] $section,
-		[Parameter(Position=1,Mandatory=1)][string] $cmdlet
+		[Parameter(Position=0,Mandatory=1)][string] $cmdlet,
+		[Parameter(Position=1,Mandatory=1)] $section,
+		[Parameter(Position=2,Mandatory=0)][switch] $multiple
 	)
-	
-	$invokeArgs = @{}
 
-	if ($section.Keys) {
-		$section.Keys | % {
-			$sectionValue = $section[$_]
-			if ($sectionValue.GetType().Name -ne 'Hashtable' -and $sectionValue.StartsWith(":")) {
-				$present = $sectionValue.Substring(1)
-				$isPresent = [boolean]$present
-				$switchParameter = New-Object System.Management.Automation.SwitchParameter -ArgumentList @($isPresent)
-				$invokeArgs.Add($_, $switchParameter)
-			}
-			else {
-				$invokeArgs.Add($_, $section[$_])	
-			}
-		}
+	if ($section.GetType().Name -eq 'String') {
+		$section = pow:getSetting $section
+	}
+	
+	$sections = @($section)
+
+	if ($multiple) {
+		$sections = @($section.Values)
 	}
 
-	Invoke-Expression "& $cmdlet @invokeArgs"
+	$sections | % {
+		$currentSection = $_
+		$invokeArgs = @{}
+		if ($currentSection.Keys) {
+			$currentSection.Keys | % {
+				$sectionValue = $currentSection[$_]
+				if ($sectionValue.GetType().Name -ne 'Hashtable' -and $sectionValue.StartsWith(":")) {
+					$present = $sectionValue.Substring(1)
+					$isPresent = [boolean]$present
+					$switchParameter = New-Object System.Management.Automation.SwitchParameter -ArgumentList @($isPresent)
+					$invokeArgs.Add($_, $switchParameter)
+				}
+				else {
+					$invokeArgs.Add($_, $currentSection[$_])	
+				}
+			}
+		}
+		Invoke-Expression "& $cmdlet @invokeArgs"
+	}
 }
 
-Export-ModuleMember -Function Invoke-BuildConfigSection
+Set-Alias pow:do Invoke-BuildConfigSection
+Export-ModuleMember -Function Invoke-BuildConfigSection -Alias pow:do

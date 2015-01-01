@@ -91,7 +91,7 @@ function Publish-LeapFrogBI {
     
     # Deploy database migrations with RoundhousE
     #
-    Invoke-BuildConfigSections $Databases Invoke-Roundhouse
+    pow:do Invoke-Roundhouse $Databases -Multiple
 
     # Enable LeapFrogBI SQL jobs
     #

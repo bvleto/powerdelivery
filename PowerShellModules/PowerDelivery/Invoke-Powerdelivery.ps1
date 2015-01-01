@@ -47,7 +47,7 @@ function Invoke-Powerdelivery
     $powerdelivery.isBuildSummarySectionStarted = $false
     $powerdelivery.version = Get-Module powerdelivery | select version | ForEach-Object { $_.Version.ToString() }
 
-    Start-BuildSummarySection Pipeline
+    Open-BuildSummarySection Pipeline
     Write-BuildSummaryMessage "$product $($powerdelivery.version)"
     Write-Host "[Invoke-Powerdelivery] Type ""get-help pow"" or visit https://github.com/eavonius/powerdelivery for help."
     Write-BuildSummaryMessage "Starting in $($powerdelivery.currentLocation)"
@@ -126,7 +126,7 @@ function Invoke-Powerdelivery
   #
   function WriteBuildSummary
   {
-    End-BuildSummarySection
+    Close-BuildSummarySection
 
     $scriptName = $powerdelivery.scriptName
 
@@ -165,7 +165,7 @@ function Invoke-Powerdelivery
             <p>Started by $(whoami) on $($powerdelivery.startedAtDate)</p>
             $summaryContent
         </div>
-        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' charset='utf-8'></script>
+        <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js' charset='utf-8'></script>
         <script src='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js' charset='utf-8'></script>
     </body>
 </html>
@@ -607,7 +607,7 @@ function Invoke-Powerdelivery
   #
   function PrintSectionHeader($text)
   {
-    Start-BuildSummarySection $text
+    Open-BuildSummarySection $text
   }
 	
   # Prints the configuration of the build for logging.
@@ -786,7 +786,7 @@ function Invoke-Powerdelivery
       $build_time_string += "$build_time_ms ms"
     }
 
-    Start-BuildSummarySection 'Build Status'
+    Open-BuildSummarySection 'Build Status'
 
     if ($buildFailed)
     {
@@ -985,7 +985,7 @@ function Pipeline
 	[CmdletBinding()]
 	param(
 		[Parameter(Position=0, Mandatory=1)][string] $scriptName,
-		[Parameter(Mandatory=1)][string] $version
+		[Parameter(Position=1, Mandatory=1)][string] $version
 	)
 
 	$powerdelivery.pipeline = $this

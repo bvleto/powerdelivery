@@ -4,18 +4,16 @@ function Add-RemoteCredSSPTrustedHost {
         [Parameter(Position=1,Mandatory=1)] [string] $serverComputerName
     )
 
-    $logPrefix = "Add-RemoteCredSSPTrustedHost"
+    Write-BuildSummaryMessage "Enabling $serverComputerName to receive remote CredSSP credentials"
 
-    Invoke-Command -ComputerName $serverComputerName -ArgumentList @($logPrefix) -ScriptBlock {
-        param($varLogPrefix)
-        Write-Host "$varLogPrefix Enabling $($env:COMPUTERNAME) to receive remote CredSSP credentials"
+    Invoke-Command -ComputerName $serverComputerName -ScriptBlock {
         Enable-WSManCredSSP -Role Server -Force | Out-Null
     }
 
-    Invoke-Command -ComputerName $clientComputerName `
-        -ArgumentList @($serverComputerName, $logPrefix) `
+    $result = Invoke-Command -ComputerName $clientComputerName `
+        -ArgumentList @($serverComputerName) `
         -ScriptBlock { 
-            param($varServerComputerName, $varLogPrefix)
+            param($varServerComputerName)
 
             $credSSP = Get-WSManCredSSP
 
@@ -33,10 +31,17 @@ function Add-RemoteCredSSPTrustedHost {
             }
 
             if (!$computerExists) {
-                Write-Host "$varLogPrefix Enabling CredSSP credentials to travel from $($env:COMPUTERNAME) to $varServerComputerName"
                 Enable-WSManCredSSP -Role Client -DelegateComputer "$varServerComputerName" -Force | Out-Null
+                return true
+            }
+            else {
+                return false
             }
         }
+
+    if ($result) {
+        Write-BuildSummaryMessage "Enabling CredSSP credentials to travel from $clientComputerName to $serverComputerName"
+    }
 }
 
 Export-ModuleMember -Function Add-RemoteCredSSPTrustedHost

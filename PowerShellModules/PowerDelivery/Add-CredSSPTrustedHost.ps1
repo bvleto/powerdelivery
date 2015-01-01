@@ -3,11 +3,9 @@
         [Parameter(Position=0,Mandatory=1)] [string] $computerName
     )
 
-    $logPrefix = "Add-CredSSPTrustedHost:"
+    Write-BuildSummaryMessage "Enabling $computerName to receive remote CredSSP credentials"
 
-    Invoke-Command -ComputerName $computerName -ArgumentList @($logPrefix) -ScriptBlock {
-        param($varLogPrefix)
-        Write-Host "$varLogPrefix Enabling $($env:COMPUTERNAME) to receive remote CredSSP credentials"
+    Invoke-Command -ComputerName $computerName -ScriptBlock {
         Enable-WSManCredSSP -Role Server -Force | Out-Null
     }
 
@@ -27,7 +25,7 @@
     }
 
     if (!$computerExists) {
-        "$logPrefix Enabling CredSSP credentials to travel from $($env:COMPUTERNAME) to $computerName"
+        Write-BuildSummaryMessage "Enabling CredSSP credentials to travel from $($env:COMPUTERNAME) to $computerName"
         Enable-WSManCredSSP -Role Client -DelegateComputer $computerName -Force | Out-Null
     }
 }

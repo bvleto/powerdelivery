@@ -1,4 +1,4 @@
-function Process-SSAS {
+function Start-ProcessSSAS {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory=1)][string] $computerName, 
@@ -8,7 +8,7 @@ function Process-SSAS {
     
     Set-Location $powerdelivery.deployDir
 
-    $logPrefix = "Process-SSAS:"
+    $logPrefix = "Start-ProcessSSAS:"
 
     $computerNames = $computerName -split "," | % { $_.Trim() }
 
@@ -59,4 +59,4 @@ function Process-SSAS {
     }
 }
 
-Export-ModuleMember -Function Process-SSAS
+Export-ModuleMember -Function Start-ProcessSSAS

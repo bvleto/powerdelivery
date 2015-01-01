@@ -10,6 +10,7 @@
       <File Id="Add_RemoteCredSSPTrustedHost.ps1" Source="..\..\PowerShellModules\PowerDelivery\Add-RemoteCredSSPTrustedHost.ps1" Name="Add-RemoteCredSSPTrustedHost.ps1" />
       <File Id="Add_WindowsUserToGroup.ps1" Source="..\..\PowerShellModules\PowerDelivery\Add-WindowsUserToGroup.ps1" Name="Add-WindowsUserToGroup.ps1" />
       <File Id="Backup_MasterDataServices.ps1" Source="..\..\PowerShellModules\PowerDelivery\Backup-MasterDataServices.ps1" Name="Backup-MasterDataServices.ps1" />
+      <File Id="Close_BuildSumSec.ps1" Source="..\..\PowerShellModules\PowerDelivery\Close-BuildSummarySection.ps1" Name="Close-BuildSummarySection.ps1" />
       <File Id="Copy_Robust.ps1" Source="..\..\PowerShellModules\PowerDelivery\Copy-Robust.ps1" Name="Copy-Robust.ps1" />
       <File Id="Push_BuildAssets.ps1" Source="..\..\PowerShellModules\PowerDelivery\Push-BuildAssets.ps1" Name="Push-BuildAssets.ps1" />
       <File Id="Disable_SqlJobs.ps1" Source="..\..\PowerShellModules\PowerDelivery\Disable-SqlJobs.ps1" Name="Disable-SqlJobs.ps1" />
@@ -40,7 +41,6 @@
       <File Id="Import_Snapin.ps1" Source="..\..\PowerShellModules\PowerDelivery\Import-Snapin.ps1" Name="Import-Snapin.ps1" />
       <File Id="Install_NServiceBusService.ps1" Source="..\..\PowerShellModules\PowerDelivery\Install-NServiceBusService.ps1" Name="Install-NServiceBusService.ps1" />
       <File Id="Invoke_BuildConfigSection.ps1" Source="..\..\PowerShellModules\PowerDelivery\Invoke-BuildConfigSection.ps1" Name="Invoke-BuildConfigSection.ps1" />
-      <File Id="Invoke_BuildConfigSections.ps1" Source="..\..\PowerShellModules\PowerDelivery\Invoke-BuildConfigSections.ps1" Name="Invoke-BuildConfigSections.ps1" />
       <File Id="Invoke_MSBuild.ps1" Source="..\..\PowerShellModules\PowerDelivery\Invoke-MSBuild.ps1" Name="Invoke-MSBuild.ps1" />
       <File Id="Invoke_MSTest.ps1" Source="..\..\PowerShellModules\PowerDelivery\Invoke-MSTest.ps1" Name="Invoke-MSTest.ps1" />
       <File Id="Invoke_Powerdelivery.ps1" Source="..\..\PowerShellModules\PowerDelivery\Invoke-Powerdelivery.ps1" Name="Invoke-Powerdelivery.ps1" />
@@ -49,8 +49,8 @@
       <File Id="New_RemoteShare.ps1" Source="..\..\PowerShellModules\PowerDelivery\New-RemoteShare.ps1" Name="New-RemoteShare.ps1" />
       <File Id="New_RemoteTempPath.ps1" Source="..\..\PowerShellModules\PowerDelivery\New-RemoteTempPath.ps1" Name="New-RemoteTempPath.ps1" />
       <File Id="New_WindowsUserAccount.ps1" Source="..\..\PowerShellModules\PowerDelivery\New-WindowsUserAccount.ps1" Name="New-WindowsUserAccount.ps1" />
+      <File Id="Open_BuildSumSec.ps1" Source="..\..\PowerShellModules\PowerDelivery\Open-BuildSummarySection.ps1" Name="Open-BuildSummarySection.ps1" />
       <File Id="PowerDelivery.psd1" Source="..\..\PowerShellModules\PowerDelivery\PowerDelivery.psd1" Name="PowerDelivery.psd1" />
-      <File Id="Process_SSAS.ps1" Source="..\..\PowerShellModules\PowerDelivery\Process-SSAS.ps1" Name="Process-SSAS.ps1" />
       <File Id="Publish_BuildAssets.ps1" Source="..\..\PowerShellModules\PowerDelivery\Publish-BuildAssets.ps1" Name="Publish-BuildAssets.ps1" />
       <File Id="Publish_LeapFrogBI.ps1" Source="..\..\PowerShellModules\PowerDelivery\Publish-LeapFrogBI.ps1" Name="Publish-LeapFrogBI.ps1" />
       <File Id="Publish_MasterDataServices.ps1" Source="..\..\PowerShellModules\PowerDelivery\Publish-MasterDataServices.ps1" Name="Publish-MasterDataServices.ps1" />
@@ -61,6 +61,7 @@
       <File Id="Register_SourceControlProvider.ps1" Source="..\..\PowerShellModules\PowerDelivery\Register-SourceControlProvider.ps1" Name="Register-SourceControlProvider.ps1" />
       <File Id="Set_AppPoolIdentity.ps1" Source="..\..\PowerShellModules\PowerDelivery\Set-AppPoolIdentity.ps1" Name="Set-AppPoolIdentity.ps1" />
       <File Id="Set_EnvironmentVariable.ps1" Source="..\..\PowerShellModules\PowerDelivery\Set-EnvironmentVariable.ps1" Name="Set-EnvironmentVariable.ps1" />
+      <File Id="Start_ProcessSSAS.ps1" Source="..\..\PowerShellModules\PowerDelivery\Start-ProcessSSAS.ps1" Name="Start-ProcessSSAS.ps1" />
       <File Id="Start_SqlJobs.ps1" Source="..\..\PowerShellModules\PowerDelivery\Start-SqlJobs.ps1" Name="Start-SqlJobs.ps1" />
       <File Id="Uninstall_NServiceBusService.ps1" Source="..\..\PowerShellModules\PowerDelivery\Uninstall-NServiceBusService.ps1" Name="Uninstall-NServiceBusService.ps1" />
       <File Id="Update_AssemblyInfoFiles.ps1" Source="..\..\PowerShellModules\PowerDelivery\Update-AssemblyInfoFiles.ps1" Name="Update-AssemblyInfoFiles.ps1" />

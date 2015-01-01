@@ -1,8 +1,8 @@
-function Start-BuildSummarySection {
+function Open-BuildSummarySection {
   [CmdletBinding()]
   param([Parameter(Position=0,Mandatory=1)][string] $name)
 
-  End-BuildSummarySection
+  Close-BuildSummarySection
   
   $powerdelivery.summaryContent += @"
   <div class='panel panel-default'>
@@ -22,4 +22,4 @@ function Start-BuildSummarySection {
   }
 }
 
-Export-ModuleMember -Function Start-BuildSummarySection
+Export-ModuleMember -Function Open-BuildSummarySection

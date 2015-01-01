@@ -27,48 +27,47 @@ function Add-WindowsUserToGroup {
 		[Parameter(Position=2,Mandatory=1)] $computerName
 	)
 	
-	Set-Location $powerdelivery.deployDir
+  $computerNames = $computerName -split "," | % { $_.Trim() }
 
-    $logPrefix = "Add-WindowsUserToGroup:"
+  foreach ($curComputerName in $computerNames) {
 
-    $computerNames = $computerName -split "," | % { $_.Trim() }
+    $invokeArgs = @{
+      "ComputerName" = $curComputerName;
+      "ArgumentList" = @($curComputerName, $groupName, $userName);
+      "ScriptBlock" = {
+        param($curComputerName, $groupName, $userName)
 
-    foreach ($curComputerName in $computerNames) {
+        $group = [ADSI]"WinNT://$curComputerName/$groupName,group"
+        $usersSet = [ADSI]"WinNT://$curComputerName/$groupName"
+        $users = @($usersSet.psbase.Invoke("Members")) 
 
-      $invokeArgs = @{
-        "ComputerName" = $curComputerName;
-        "ArgumentList" = @($curComputerName, $groupName, $userName, $logPrefix);
-        "ScriptBlock" = {
-          param($curComputerName, $groupName, $userName, $logPrefix)
+        $foundAccount = $false
 
-		    $group = [ADSI]"WinNT://$curComputerName/$groupName,group"
-		    $usersSet = [ADSI]"WinNT://$curComputerName/$groupName"
-		    $users = @($usersSet.psbase.Invoke("Members")) 
+        $users | foreach {
+          if ($_.GetType().InvokeMember("Name", 'GetProperty', $null, $_, $null) -eq $userName) {
+            $foundAccount = $true
+          }
+        }
 
-		    $foundAccount = $false
-
-		    $users | foreach {
-			    if ($_.GetType().InvokeMember("Name", 'GetProperty', $null, $_, $null) -eq $userName) {
-				    $foundAccount = $true
-			    }
-		    }
-
-		    if (!$foundAccount) {
-			    "$logPrefix Adding $userName user to $groupName group on $($curComputerName)..."
-
-			    $group.psbase.Invoke("Add", ([ADSI]"WinNT://$userName").path)
-
-			    "$logPrefix User $userName added to $groupName group on $($curComputerName) successfully."
-		    }
-	    };
+        if (!$foundAccount) {
+          $group.psbase.Invoke("Add", ([ADSI]"WinNT://$userName").path)
+          return true
+        }
+        else {
+          return false
+        }
+      };
       "ErrorAction" = "Stop"
     }
 
     if ([String]::IsNullOrWhitespace($curComputerName) -or ($curComputerName -eq 'localhost')) {
-        $invokeArgs.Remove("ComputerName")
+      $invokeArgs.Remove("ComputerName")
     }
 
-    Invoke-Command @invokeArgs
+    $result = Invoke-Command @invokeArgs
+    if ($result) {
+      Write-BuildSummaryMessage "Adding $userName user to $groupName group on $curComputerName..."
+    }
   }
 }
 
