@@ -32,10 +32,10 @@ function Add-RemoteCredSSPTrustedHost {
 
             if (!$computerExists) {
                 Enable-WSManCredSSP -Role Client -DelegateComputer "$varServerComputerName" -Force | Out-Null
-                return true
+                return $true
             }
             else {
-                return false
+                return $false
             }
         }
 

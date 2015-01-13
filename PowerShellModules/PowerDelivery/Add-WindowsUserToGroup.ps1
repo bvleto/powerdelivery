@@ -51,10 +51,10 @@ function Add-WindowsUserToGroup {
 
         if (!$foundAccount) {
           $group.psbase.Invoke("Add", ([ADSI]"WinNT://$userName").path)
-          return true
+          return $true
         }
         else {
-          return false
+          return $false
         }
       };
       "ErrorAction" = "Stop"
