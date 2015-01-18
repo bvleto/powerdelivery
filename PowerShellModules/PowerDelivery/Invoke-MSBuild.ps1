@@ -120,7 +120,7 @@ function Invoke-MSBuild {
 
   try {
     Write-BuildSummaryMessage $msBuildCommand
-    Exec -errorMessage "Invocation of MSBuild project $projectFile failed." {            
+    Exec -errorMessage "Invocation of MSBuild project $projectFile failed." {
       Invoke-Expression $msBuildCommand | Out-Host
     }
   }

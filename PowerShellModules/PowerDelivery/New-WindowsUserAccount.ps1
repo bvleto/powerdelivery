@@ -29,17 +29,15 @@ function New-WindowsUserAccount {
 	
 	Set-Location $powerdelivery.deployDir
 
-  $logPrefix = "[New-WindowsUserAccount]"
-
   $computerNames = $computerName -split "," | % { $_.Trim() }
 
   foreach ($curComputerName in $computerNames) {
 
       $invokeArgs = @{
         "ComputerName" = $curComputerName;
-        "ArgumentList" = @($curComputerName, $userName, $password, $logPrefix);
+        "ArgumentList" = @($curComputerName, $userName, $password);
         "ScriptBlock" = {
-          param($curComputerName, $userName, $password, $logPrefix)
+          param($curComputerName, $userName, $password)
 
           if ($curComputerName -eq 'localhost' -or ([String]::IsNullOrWhitespace($curComputerName))) {
             $curComputerName = $env:computername
@@ -57,7 +55,6 @@ function New-WindowsUserAccount {
           }
 
           if (!$foundAccount) {
-            Write-Host "$logPrefix Adding $userName user to $($curComputerName)..."
 
             $addUserArgs = @(
               "user",
@@ -78,13 +75,18 @@ function New-WindowsUserAccount {
         "ErrorAction" = "Stop"
       }
 
+      $msg = "$userName"
+
       if ([String]::IsNullOrWhitespace($curComputerName) -or ($curComputerName -eq 'localhost')) {
         $invokeArgs.Remove("ComputerName")
+      }
+      else {
+        $msg += " ($curComputerName)"
       }
 
       Invoke-Command @invokeArgs
 
-      Write-BuildSummaryMessage "$userName ($curComputerName)"
+      Write-BuildSummaryMessage $msg
     }
 }
 

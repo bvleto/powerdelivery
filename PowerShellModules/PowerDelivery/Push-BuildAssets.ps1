@@ -9,8 +9,6 @@
 		[Parameter(Position=5,Mandatory=0)][string] $driveLetter = $powerdelivery.deployDriveLetter
 	)
 	
-	$logPrefix = "[Push-BuildAssets]"
-	
 	$computerNames = $ComputerName -split "," | % { $_.Trim() }
 	
 	$dropLocation = Get-BuildDropLocation
@@ -24,8 +22,6 @@
 		mkdir -Force $remoteDestinationPath | Out-Null
 		
 		Copy-Robust $dropSource $remoteDestinationPath -filter $filter -recurse:$recurse.IsPresent
-
-    Write-BuildSummaryMessage "$path -> $destination ($computerName)"
 	}
 }
 

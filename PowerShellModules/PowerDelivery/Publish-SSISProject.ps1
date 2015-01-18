@@ -8,21 +8,17 @@ function Publish-SSISProject {
         [Parameter(Position=5,Mandatory=0)] $variables = @{}
     )
 
-    $logPrefix = "[Publish-SSISProject]"
-
     $computerNames = $computerName -split "," | % { $_.Trim() }
 
     foreach ($curComputerName in $computerNames) {
-
-        "$logPrefix Deploying $isPacFile to SSIS on $curComputerName"
 
         $dropLocation = Get-BuildDropLocation
 
         $invokeArgs = @{
             "ComputerName" = $curComputerName;
-            "ArgumentList" = @($computerName, $connectionString, $isPacFile, $projectName, $folderName, $dropLocation, $logPrefix);
+            "ArgumentList" = @($computerName, $connectionString, $isPacFile, $projectName, $folderName, $dropLocation)
             "ScriptBlock" = {
-                param($computerName, $connectionString, $isPacFile, $projectName, $folderName, $dropLocation, $logPrefix)
+                param($computerName, $connectionString, $isPacFile, $projectName, $folderName, $dropLocation)
 
                 # Load the IntegrationServices Assembly
                 [System.Reflection.Assembly]::LoadWithPartialName("Microsoft.SqlServer.Management.IntegrationServices") | Out-Null;
@@ -52,20 +48,15 @@ function Publish-SSISProject {
 
                 $isPacFullPath = Join-Path $dropLocation $isPacFile
                  
-                Write-Host "Deploying " $projectName " SSIS project ..."
-                 
                 # Read the project file, and deploy it to the folder
                 [byte[]] $projectFile = [System.IO.File]::ReadAllBytes($isPacFullPath)
-                $folder.DeployProject($projectName, $projectFile)
+                $folder.DeployProject($projectName, $projectFile) | Out-Null
                 
                 $environment = $folder.Environments[$powerdelivery.environment]
                 if (!$environment)  {
-                  Write-Host "Creating environment ..."
                   $environment = New-Object $ISNamespace".EnvironmentInfo" ($folder, $powerdelivery.environment, "Description")
                   $environment.Create()            
                 }
-                 
-                Write-Host "Adding server variables ..."
                  
                 # Adding variable to our environment
                 # Constructor args: variable name, type, default value, sensitivity, description
@@ -83,8 +74,6 @@ function Publish-SSISProject {
                     $environment.Alter()
                 }
  
-                Write-Host "Adding environment reference to project ..."
-                 
                 # making project refer to this environment
                 $project = $folder.Projects[$projectName]
                 if ($project.References.Contains($powerdelivery.environment, $folder.Name) -eq $false) {

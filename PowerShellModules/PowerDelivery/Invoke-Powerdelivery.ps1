@@ -228,7 +228,7 @@ function Invoke-Powerdelivery
       throw "Build configuration file $($powerdelivery.sharedConfigFileName) not found."
     }
 
-    Write-BuildSummaryMessage "Loaded $(Print-BuildPath $sharedConfigFullPath)..."
+    Write-BuildSummaryMessage "Loaded $(Print-BuildPath $sharedConfigFullPath)"
 
     $sharedConfig = Get-Yaml -FromFile $sharedConfigFullPath
 

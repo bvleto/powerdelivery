@@ -16,7 +16,7 @@ function Backup-MasterDataServices {
 
     foreach ($curComputerName in $computerNames) {
 
-        "$logPrefix Backing up Master Data Services model $model on $computerName"
+        Write-BuildSummaryMessage "Backing up Master Data Services model $model on $computerName"
 
         $dropLocation = Get-BuildDropLocation
 

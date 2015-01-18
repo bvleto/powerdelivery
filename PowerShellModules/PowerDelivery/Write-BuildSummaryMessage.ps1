@@ -18,10 +18,15 @@ function Write-BuildSummaryMessage {
     [CmdletBinding()]
     param(
         [Parameter(Position=0,Mandatory=1)][string] $message,
-        [Parameter(Position=1,Mandatory=0)] $foregroundColor = $null
+        [Parameter(Position=1,Mandatory=0)] $foregroundColor = $null,
+        [Parameter(Position=2,Mandatory=0)] $actionName = $null
     )
 
-    $action = [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.PSCommandPath)
+    $action = $actionName
+
+    if ([String]::IsNullOrWhitespace($actionName)) {
+        $action = [System.IO.Path]::GetFileNameWithoutExtension($MyInvocation.PSCommandPath)
+    }
 
     $actionText = $action
 
